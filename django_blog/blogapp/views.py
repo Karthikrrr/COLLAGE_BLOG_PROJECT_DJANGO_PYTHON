@@ -1,10 +1,36 @@
 from django.contrib import messages
-from django.shortcuts import redirect, render , HttpResponse
+from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from .models import Post
+from .forms import PostForm, UpdateForm
 
-def home(request):
-    return render(request , "auth/home.html")
+class HomeView(ListView):
+    model = Post
+    template_name = 'home.html'
+    ordering = ['-created_at']
+
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'blog_detailed_view.html'
+
+class AddBlogView(CreateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'add_blog.html'
+    # fields = ('title' , 'author' , 'body')
+
+class UpdateBlogView(UpdateView):
+    model = Post
+    form_class = UpdateForm
+    template_name = 'update_blog.html'
+
+class DeleteBlogView(DeleteView):
+    model = Post
+    template_name = 'delete_blog.html'  
+    success_url = reverse_lazy('home')
 
 def register(request):
      
@@ -38,7 +64,7 @@ def register(request):
          myuser.save()
          messages.success(request, "Your Account has been created succesfully!!")
          return redirect('/login')
-     return render(request , "auth/register.html")
+     return render(request , "register.html")
 
 def user_login(request):
     if request.method == 'POST':
@@ -51,12 +77,12 @@ def user_login(request):
             login(request , true_user)
             get_username = true_user.username
             messages.success(request, "Logged In Sucessfully!!")
-            return render(request, "auth/home.html",{"first_name":get_username})
+            return render(request, "home.html",{"first_name":get_username})
         else:
             messages.error(request, "Invalid Credentials!!")
             return redirect('/login')
     
-    return render(request, "auth/login.html")
+    return render(request, "login.html")
 
 def signout(request):
     logout(request)
