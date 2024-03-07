@@ -38,7 +38,7 @@ def register(request):
          myuser.save()
          messages.success(request, "Your Account has been created succesfully!!")
          return redirect('/login')
-     return render(request , "auth/register.html")
+     return render(request , "register.html")
 
 def user_login(request):
     if request.method == 'POST':
@@ -56,7 +56,7 @@ def user_login(request):
             messages.error(request, "Invalid Credentials!!")
             return redirect('/login')
     
-    return render(request, "auth/login.html")
+    return render(request, "login.html")
 
 def signout(request):
     logout(request)
