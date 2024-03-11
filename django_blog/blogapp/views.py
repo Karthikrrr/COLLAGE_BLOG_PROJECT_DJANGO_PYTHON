@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post
+from .models import Post, Category
 from .forms import PostForm, UpdateForm
 
 class HomeView(ListView):
@@ -12,15 +12,31 @@ class HomeView(ListView):
     template_name = 'home.html'
     ordering = ['-created_at']
 
+    def get_context_data(self, *args, **kwargs):
+        category_menu = Category.objects.all()
+        context = super(HomeView, self).get_context_data(*args, **kwargs)
+        context["category_menu"] = category_menu
+        return context
+
+
+def CategoryView(request , cats):
+    category_post = Post.objects.filter(category=cats.replace('-' , ' '))
+    return render(request, 'categories.html' , {'cats':cats.title().replace('-' , ' '), 'category_post':category_post})
+
 class PostDetailView(DetailView):
     model = Post
     template_name = 'blog_detailed_view.html'
+
+    def get_context_data(self, *args, **kwargs):
+        category_menu = Category.objects.all()
+        context = super(PostDetailView, self).get_context_data(*args, **kwargs)
+        context["category_menu"] = category_menu
+        return context
 
 class AddBlogView(CreateView):
     model = Post
     form_class = PostForm
     template_name = 'add_blog.html'
-    # fields = ('title' , 'author' , 'body')
 
 class UpdateBlogView(UpdateView):
     model = Post
@@ -31,6 +47,12 @@ class DeleteBlogView(DeleteView):
     model = Post
     template_name = 'delete_blog.html'  
     success_url = reverse_lazy('home')
+
+    def get_context_data(self, *args, **kwargs):
+        category_menu = Category.objects.all()
+        context = super(DeleteBlogView, self).get_context_data(*args, **kwargs)
+        context["category_menu"] = category_menu
+        return context
 
 # def register(request):
      
