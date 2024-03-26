@@ -20,19 +20,21 @@
     </div>
     {% endfor %}
 
-    <h3>Welcome to tiwista</h3>
+   
 
 <ul>
     {% for post in object_list %}
-       <li><a href="{% url 'post-detail' post.pk %}">{{post.title}}</a> 
-       <a href="{% url 'category' post.category|slugify %}"> - {{ post.category }}</a>
-        - {{post.author}} 
+       <li><h2><a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h2> 
+       <h4><a href="{% url 'category' post.category|slugify %}"> - {{ post.category }}</a></h4><h5>--- created at --- : {{ post.created_at }}
+       &nbsp; By - {{post.author}}</h5>
         {% if user.is_authenticated %}
         {% if user.id == post.author.id %}
         <small><a href="{% url 'update_post' post.pk %}">(update)</a></small>
         <small><a href="{% url 'delete_post' post.pk %}">(delete)</a></small><br>
+       
         {% endif %}
         {% endif %}
+        <br> 
         {{post.body|slice:":140"}}</li>
         <br>
     {% endfor %}
