@@ -32,7 +32,7 @@
     <br/>
     <br/>
     <button type="submit"><a href="/login">SignIn</a></button>
-
+    {% endif %}
     <br><br>
 
     {% for post in object_list %}
@@ -41,7 +41,8 @@
         <br>
     {% endfor %}
     <br>
-    {% endif %}
+   
+    
 </body>
 </html> 
 {% endblock %}
