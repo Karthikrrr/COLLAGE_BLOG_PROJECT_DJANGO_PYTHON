@@ -35,7 +35,8 @@
         {% endif %}
         {% endif %}
         <br> 
-        {{post.body|slice:":140"}}</li>
+        {{ post.snippet }}
+        {{post.body|slice:":240"|safe}}</li>
         <br>
     {% endfor %}
     <br>

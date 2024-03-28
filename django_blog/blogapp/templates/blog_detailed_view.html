@@ -11,7 +11,7 @@
 {% endif %}
 <br>
 <hr>
-<h5>{{post.body}}</h5>
+<h5>{{post.body|safe}}</h5>
 <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
 <br>
 <hr>
