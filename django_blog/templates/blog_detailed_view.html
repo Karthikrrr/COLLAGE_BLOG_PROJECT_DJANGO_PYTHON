@@ -1,0 +1,11 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{post.title}}</h1> - <small>By : {{post.author}} -  <strong>created At :-</strong>{{post.created_at}}<a href="{% url 'update_post' post.pk %}">(update)</a></small>
+<small><a href="{% url 'delete_post' post.pk %}">(delete)</a></small>
+<br>
+<hr>
+<h5>{{post.body}}</h5>
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+{% endblock %}

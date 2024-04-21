@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,5 +33,16 @@
     <br/>
     <button type="submit"><a href="/login">SignIn</a></button>
     {% endif %}
+    <br><br>
+
+    {% for post in object_list %}
+       <li><a href="{% url 'post-detail' post.pk %}">{{post.title}}</a> - {{post.author}} <small><a href="{% url 'update_post' post.pk %}">(update)</a></small><small><a href="{% url 'delete_post' post.pk %}">(delete)</a></small><br>
+        {{post.body}}</li>
+        <br>
+    {% endfor %}
+    <br>
+   
+    
 </body>
-</html>
+</html> 
+{% endblock %}
