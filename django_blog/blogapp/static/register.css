@@ -1,0 +1,254 @@
+body {
+    margin: 0;
+    line-height: normal;
+    font-family: "Anta", sans-serif;
+    transition: transform 0.3s ease;
+}
+
+:root {
+    /* fonts */
+    --font-itim: Itim;
+
+    /* font sizes */
+    --font-size-6xl: 25px;
+    --font-size-xl: 20px;
+    --font-size-21xl: 40px;
+
+    /* Colors */
+    --color-white: #fff;
+    --color-orangered: #ff6b00;
+    --color-black: #000;
+    --color-gray: rgba(0, 0, 0, 0.5);
+
+    /* Border radiuses */
+    --br-xl: 20px;
+}
+
+.navbar {
+    position: relative;
+    display: block;
+    top: 10px;
+    left: 50px;
+    font-size: var(--font-size-21xl);
+    background: linear-gradient(180deg, #ff6b00 72.5%, rgba(255, 107, 0, 0));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: var(--font-itim);
+    cursor: pointer;
+}
+
+.bg {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    width: 50%;
+    opacity: 10%;
+}
+
+.container {
+    display: block;
+    margin: -42% 0 0 0;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+}
+
+form {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    max-width: 380px;
+}
+
+h2 {
+    display: block;
+    align-self: center;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.input-group input {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-right: 20px;
+    font-family: "Anta", sans-serif;
+}
+
+.input-group input:focus {
+    border-color: #ff6b00;
+}
+
+button {
+    display: block;
+    align-self: center;
+    padding: 10px 20px;
+    background-color: var(--color-orangered);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    margin-top: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    font-family: "Anta", sans-serif;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.by-siging-up-container {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    /* width: 400px; */
+    height: 35px;
+    padding: 0 0 15px 5px;
+}
+
+.span-txt {
+    text-decoration: underline;
+    color: var(--color-orangered);
+    cursor: pointer;
+}
+
+.by-siging-up-you-agree-to-our {
+    margin: 0;
+}
+
+p {
+    align-self: center;
+    margin: 8px auto;
+    font-size: medium;
+}
+
+.google-reg {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 10px 10px 20px 20px;
+    align-self: center;
+    cursor: pointer;
+    background-color: #ff8b38;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+}
+
+.google-icon {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30px;
+    height: 19px;
+    overflow: hidden;
+}
+
+.gs-btn {
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+
+.login-btn {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: medium;
+    text-decoration: underline;
+    color: var(--color-orangered);
+    width: 79px;
+    height: 23px;
+    cursor: pointer;
+}
+
+/* @media (max-width:1028px) {
+    .bg {
+        position: relative;
+        margin-top: 10%;
+    }
+} */
+
+@media (max-width: 500px) {
+    .container {
+        width: 90%;
+        margin: 30px auto;
+    }
+
+    .by-siging-up-container {
+        font-size: small;
+    }
+
+    .google-reg {
+        font-size: small;
+    }
+}
+
+@media (max-width: 720px) {
+    .navbar {
+        /* position: absolute; */
+        margin-left: -15%;
+        /* margin-right: auto; */
+        text-align: center;
+    }
+
+    .bg {
+        margin-top: 12%;
+        background-position: center;
+    }
+}
+
+@media (max-width : 500px) {
+    .navbar {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        text-align: center;
+    }
+}
+
+@media (max-width : 360px) {
+    .navbar {
+        position: absolute;
+        top: 15%;
+        text-align: center;
+    }
+}
+
+@media (max-width : 290px) {
+    .navbar {
+        position: absolute;
+        top: 10%;
+        text-align: center;
+    }
+
+    h2 {
+        position: relative;
+        left: 8%;
+    }
+
+    .butn {
+        margin-top: 20px;
+    }
+}
