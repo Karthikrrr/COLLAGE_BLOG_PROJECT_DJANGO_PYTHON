@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1> Delete Your Blog </h1><br><br>
-<h3>Delete Post : {{ post.title }}</h3>
-<br>
+<h1>Register !!!...</h1>
+
+
 <div class="form-group">
 <form method="POST">
     {% csrf_token %}
-    <strong>Are You Sure About That !!!</strong><br><br>
-    <button class="btn btn-secondary" >Delete Post</button>
+    {{ form.as_p }}
+    <button class="btn btn-secondary" >Register</button>
     <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
 </form>
-
 </div>
 {% endblock %}

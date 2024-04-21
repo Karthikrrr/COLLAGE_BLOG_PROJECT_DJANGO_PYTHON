@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+{% if user.id == post.author.id %}
+<h1> Delete Your Blog </h1><br><br>
+<h3>Delete Post : {{ post.title }}</h3>
+<br>
+<div class="form-group">
+<form method="POST">
+    {% csrf_token %}
+    <strong>Are You Sure About That !!!</strong><br><br>
+    <button class="btn btn-secondary" >Delete Post</button>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+</form>
+</div>
+{% else %}
+<h1>404 NOT FOUND</h1>
+{% endif %}
+{% else %}
+Please Login !!!!
+{% endif %}
+{% endblock %}

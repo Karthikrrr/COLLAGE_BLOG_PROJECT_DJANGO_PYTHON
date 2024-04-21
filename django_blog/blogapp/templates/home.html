@@ -22,27 +22,22 @@
 
     <h3>Welcome to tiwista</h3>
 
-
-    {% if user.is_authenticated %}
-    <h3>Hello {{first_name}}!</h3>
-    <h4>You're successfully logged in.</h4>
-    <button type="submit"><a href="/signout">SignOut</a></button>
-    {% else %}
-    <button type="submit"><a href="/register">SignUp</a></button>
-    <br/>
-    <br/>
-    <button type="submit"><a href="/login">SignIn</a></button>
-    {% endif %}
-    <br><br>
-
+<ul>
     {% for post in object_list %}
-       <li><a href="{% url 'post-detail' post.pk %}">{{post.title}}</a> - {{post.author}} <small><a href="{% url 'update_post' post.pk %}">(update)</a></small><small><a href="{% url 'delete_post' post.pk %}">(delete)</a></small><br>
-        {{post.body}}</li>
+       <li><a href="{% url 'post-detail' post.pk %}">{{post.title}}</a> 
+       <a href="{% url 'category' post.category|slugify %}"> - {{ post.category }}</a>
+        - {{post.author}} 
+        {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
+        <small><a href="{% url 'update_post' post.pk %}">(update)</a></small>
+        <small><a href="{% url 'delete_post' post.pk %}">(delete)</a></small><br>
+        {% endif %}
+        {% endif %}
+        {{post.body|slice:":140"}}</li>
         <br>
     {% endfor %}
     <br>
-   
-    
+</ul>
 </body>
 </html> 
 {% endblock %}
