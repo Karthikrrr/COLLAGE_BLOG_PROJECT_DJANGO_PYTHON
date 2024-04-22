@@ -35,8 +35,8 @@
         {% endif %}
         {% endif %}
         <br> 
-        {{ post.snippet }}
-        {{post.body|slice:":240"|safe}}</li>
+        <!-- {{ post.snippet }} change in models.py file to add snippet -->
+        {{post.body|slice:":140"|safe}}</li>
         <br>
     {% endfor %}
     <br>

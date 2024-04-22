@@ -11,7 +11,7 @@ for item in choice:
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title' , 'author', 'category' , 'body')
+        fields = ('title' , 'author', 'category' , 'body') #add snippet to fields if needed and uncomment in maodels.py file
 
         widgets = {
             'title' : forms.TextInput(attrs={'class':'form-control' , 'placeholder':'Enter Title'}),
@@ -19,6 +19,7 @@ class PostForm(forms.ModelForm):
             # 'author' : forms.Select(attrs={'class':'form-control'}),
             'category' : forms.Select(choices=lists,attrs={'class':'form-control'}),
             'body' : forms.Textarea(attrs={'class':'form-control' , 'placeholder':'Describe the Title'}),
+            # 'snippet' : forms.Textarea(attrs={'class':'form-control' , 'placeholder':'Describe the Title'}),
         }
 
 class UpdateForm(forms.ModelForm):

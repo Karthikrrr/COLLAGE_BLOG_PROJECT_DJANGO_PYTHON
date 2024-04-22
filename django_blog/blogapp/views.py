@@ -1,7 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render , get_object_or_404
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post, Category
