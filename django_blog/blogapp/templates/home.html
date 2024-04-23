@@ -24,9 +24,12 @@
 
 <ul>
     {% for post in object_list %}
-       <li><h2><a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h2> 
-       <h4><a href="{% url 'category' post.category|slugify %}"> - {{ post.category }}</a></h4><h5>--- created at --- : {{ post.created_at }}
-       &nbsp; By - {{post.author}}</h5>
+    <li><h2><a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h2> 
+        <h4><a href="{% url 'category' post.category|slugify %}"> - {{ post.category }}</a></h4><h5>--- created at --- : {{ post.created_at }}
+            &nbsp; By - {{post.author}}</h5>  
+    {% if post.header_image %}
+        <img src="{{ post.header_image.url }}" alt="loding..." width="50%" height="50%">
+        {% endif %}
         {% if user.is_authenticated %}
         {% if user.id == post.author.id %}
         <small><a href="{% url 'update_post' post.pk %}">(update)</a></small>
@@ -36,7 +39,7 @@
         {% endif %}
         <br> 
         <!-- {{ post.snippet }} change in models.py file to add snippet -->
-        {{post.body|slice:":140"|safe}}</li>
+        {{post.body|slice:":180"|safe}}...</li>
         <br>
     {% endfor %}
     <br>

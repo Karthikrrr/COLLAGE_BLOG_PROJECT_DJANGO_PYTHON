@@ -11,6 +11,11 @@
 {% endif %}
 <br>
 <hr>
+{% if post.header_image %}
+<img src="{{ post.header_image.url }}" alt="loding...." width="80%">
+{% endif %}
+<br>
+<br>
 <h5>{{post.body|safe}}</h5>
 <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
 <br>
@@ -28,6 +33,7 @@
     <a  href="{% url 'login' %}">Login to Like</a>
     {% endif %}
      {{ total_likes }} liked
-    
+    <br>
+    <br>
 </form>
 {% endblock %}

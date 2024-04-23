@@ -12,10 +12,20 @@ class Category(models.Model):
     
     def get_absolute_url(self):
         return reverse('home')
+    
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    bio = models.TextField()
+
+    def __str__(self):
+        return self.user
+
 
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
+    header_image = models.ImageField(null=True, blank=True, upload_to="images/")
     author = models.ForeignKey(User , on_delete=models.CASCADE)
     body = RichTextField(blank=True, null=True)
     # body = models.TextField()
