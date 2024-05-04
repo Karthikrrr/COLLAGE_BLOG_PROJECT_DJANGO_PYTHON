@@ -1,49 +1,90 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
 </head>
-<body>
+<style>
+  .blog-section{
+    margin-top: 3rem;
+}
+.pads{
+  padding-left: 50px !important;
+  padding-bottom: 3rem !important;
+}
+.mamu {
+  text-decoration: none;
+}
+.sanss{
+  font-family: 'Satisfy';font-size: 25px;
+      font-weight: 700;
+    }
+</style>
+<script src="{% static 'blog/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'blog/js/bootstrap.swiper-bundle.min.js' %}"></script>
+<link href="{% static 'blog/css/swiper-bundle.min.css' %}" rel="stylesheet">
+<link href="{% static 'blog/css/bootstrap.min.css' %}" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"> 
 
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-        <strong>Message:</strong> {{ message }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-    </div>
-    {% endfor %}
 
-   
-
-<ul>
-    {% for post in object_list %}
-    <li><h2><a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h2> 
-        <h4><a href="{% url 'category' post.category|slugify %}"> - {{ post.category }}</a></h4><h5>--- created at --- : {{ post.created_at }}
-            &nbsp; By - {{post.author}}</h5>  
-    {% if post.header_image %}
-        <img src="{{ post.header_image.url }}" alt="loding..." width="50%" height="50%">
+<section id="blog-section" class="blog-section">
+  <div class="container">
+    <div class="row">  
+      {% for post in object_list %}
+      <div class="col-lg-6 pads" data-aos="fade-down"  data-aos-duration="1500">
+        {% if post.header_image %}
+        <img src="{{ post.header_image.url }}" width="100%" height="400px" >
         {% endif %}
-        {% if user.is_authenticated %}
+        <h2 class="pt-4">
+          <span style="color: rgb(227, 148, 2); font-size: 25px;" >Title - </span>
+          <a href="{% url 'post-detail' post.pk %}" style="text-decoration: none; color: black;">{{ post.title }}</a>
+        </h2>
+      <p class="sanss"> 
+        <span style="color: rgb(227, 148, 2); font-size: 25px; " class="mamu">Category - </span>
+        <a href="{% url 'category' post.category|slugify %}" style="font-size: 23px;text-decoration: none;">{{ post.category }}</a>
+         <span class="pl-2"><span style="color: rgb(227, 148, 2); font-size: 25px;">&nbsp;&nbsp;&nbsp;Created at -</span>  {{ post.created_at }}</span>
+        </p> 
+        {{ post.body|slice:":290"|safe }}...
+      </div>    
+      {% endfor %}
+    </div>  
+  </div> 
+</section>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      {% if page_obj.has_previous %}
+      <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+      {% endif %}
+    </li>
+    <span class="current">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+  </span>
+    <li class="page-item">
+      {% if page_obj.has_next %}
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+      {% endif %}
+    </li>
+  </ul>
+</nav>
+<script>
+  AOS.init();
+</script>
+        <!-- {% if user.is_authenticated %}
         {% if user.id == post.author.id %}
         <small><a href="{% url 'update_post' post.pk %}">(update)</a></small>
         <small><a href="{% url 'delete_post' post.pk %}">(delete)</a></small><br>
        
         {% endif %}
-        {% endif %}
-        <br> 
+        {% endif %} -->
+        <!-- <br>  -->
         <!-- {{ post.snippet }} change in models.py file to add snippet -->
-        {{post.body|slice:":180"|safe}}...</li>
-        <br>
-    {% endfor %}
-    <br>
-</ul>
-</body>
-</html> 
 {% endblock %}
