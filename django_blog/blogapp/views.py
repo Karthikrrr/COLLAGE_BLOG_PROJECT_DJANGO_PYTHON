@@ -9,6 +9,14 @@ from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
+def SearchView(request):
+    if request.method == "POST":
+        searchbar = request.POST['searchbar']
+        searchedpost = Post.objects.filter(title__icontains=searchbar)
+        return render(request, "search.html", {'search':searchbar,'searchedpost':searchedpost})
+    else:
+        return render(request, "search.html", {})
+
 def LikeView(request , pk):
     post = get_object_or_404(Post , id=request.POST.get('post_id'))
     liked = False
@@ -19,6 +27,9 @@ def LikeView(request , pk):
         post.likes.add(request.user)
         liked=True
     return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
+
+def LandingView(request):
+    return render(request, "landing.html")
 
 
 class HomeView(ListView):

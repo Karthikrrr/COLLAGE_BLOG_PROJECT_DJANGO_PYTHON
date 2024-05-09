@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if search %}
+<h1> You Searched For {{ search }} </h1>
+{% for post in searchedpost %}
+{{ post.title }}<br>
+{% endfor %}
+{% else %}
+<h1> not working </h1>
+{% endif %}
+
+
+{% endblock %}
