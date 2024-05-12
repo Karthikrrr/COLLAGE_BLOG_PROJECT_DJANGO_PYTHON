@@ -25,11 +25,12 @@ class PostForm(forms.ModelForm):
 class UpdateForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title'  , 'body')
+        fields = ('title', 'body', 'header_image')
 
         widgets = {
             'title' : forms.TextInput(attrs={'class':'form-control' , 'placeholder':'Enter Title'}),
             'body' : forms.Textarea(attrs={'class':'form-control' , 'placeholder':'Describe the Title'}),
+            
         }
 
 class CommentForm(forms.ModelForm):

@@ -9,6 +9,10 @@ from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
+def AboutView(request):
+    return render(request, "about.html")
+
+
 def LikeView(request , pk):
     post = get_object_or_404(Post , id=request.POST.get('post_id'))
     liked = False
@@ -39,8 +43,7 @@ class HomeView(ListView):
     #         posts = paginator.page(paginator.num_pages)
     #     context = {'posts': posts}
     #     return render(request,  'home.html', context)
-
-
+    
     def get_context_data(self, *args, **kwargs):
         category_menu = Category.objects.all()
         context = super(HomeView, self).get_context_data(*args, **kwargs)

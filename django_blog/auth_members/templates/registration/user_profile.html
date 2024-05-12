@@ -66,8 +66,10 @@
                           <p class="text-muted" style="font-size: 20px;">{{ page_user.user.email }}</p>
                         </div>
                         <div class="col-6 mb-3">
+                          {% if user.profile.id == profile.id %}
                           <h6 style="font-size: 25px;">Username</h6>
                           <p class="text-muted" style="font-size: 20px;">{{ page_user.user.username }}</p>
+                          {% endif %}
                         </div>
                         <div class="col-6 mb-3">
                           <h6 style="font-size: 25px;">Region</h6>
@@ -79,7 +81,7 @@
                         </div>
                       </div>
                       <h6 style="font-size: 25px;">Bio</h6>
-                      <p style="font-size: 20px;">{{ page_user.bio }}</p>
+                      <p style="font-size: 20px;">{{ page_user.bio|safe }}</p>
                       <hr class="mt-0 mb-4"> 
                       <div class="d-flex justify-content-center social-media">
                         {% if page_user.website_url %}

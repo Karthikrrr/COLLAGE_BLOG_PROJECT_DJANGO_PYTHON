@@ -1,0 +1,109 @@
+h1{
+    color: rgb(207, 130, 5);
+    font-family: Satisfy,sans-saref;
+    font-weight: 700;
+}
+
+span{
+    color: black;
+}
+
+h2{
+    color: rgb(207, 130, 5);
+    font-family: Satisfy,sans-saref;
+    font-weight: 700;
+}
+
+p{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+}
+
+h4{
+    color: rgb(207, 130, 5) !important;
+    font-family: Satisfy,sans-saref;
+    font-weight: 700;
+}
+
+/***********************************************************************
+Our Team section Styles 
+******************************************************************** */
+
+.team .member {
+    position: relative;
+  }
+  
+  .team .member .member-img {
+    margin: 0 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  @media (max-width: 1024px) {
+    .team .member .member-img {
+      margin: 0 60px;
+    }
+  }
+  
+  .team .member .member-img img {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .team .member .member-img .social {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    padding-bottom: 20px;
+    transition: 0.3s;
+    visibility: hidden;
+    opacity: 0;
+  }
+  
+  .team .member .member-img .social a {
+    transition: 0.3s;
+    color: #fff;
+    font-size: 20px;
+    margin: 0 8px;
+  }
+  
+  .team .member .member-img .social a:hover {
+    color: var(--color-primary);
+  }
+  
+  .team .member .member-info {
+    margin-top: 30px;
+  }
+  
+  .team .member .member-info h4 {
+    font-weight: 700;
+    margin-bottom: 6px;
+    font-size: 18px;
+    color: var(--color-secondary);
+  }
+  
+  .team .member .member-info span {
+    font-style: italic;
+    display: block;
+    font-size: 15px;
+    color: #838893;
+    margin-bottom: 10px;
+  }
+  
+  .team .member .member-info p {
+    margin-bottom: 0;
+    font-size: 14px;
+  }
+  
+  .team .member:hover .member-img .social {
+    padding-bottom: 0;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  

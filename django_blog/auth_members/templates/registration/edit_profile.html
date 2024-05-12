@@ -1,16 +1,17 @@
-
 {% extends 'base.html' %}
-
 {% block content %}
+{% if user.is_authenticated %}
+<div class="form-group pt-4">
 <h1>Update Form!!!....</h1>
-
-
-<div class="form-group">
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn btn-secondary" >Login</button>
+    <br>
+    <button class="btn btn-secondary" >Update</button>
     <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
 </form>
 </div>
+{% else %}
+Login first!!!! <a href="{% url 'login' %}" ></a>
+{% endif %}
 {% endblock %}

@@ -5,9 +5,10 @@
 
 {% if user.is_authenticated %}
     {% if user.id == post.author.id %}
-        <h1> Update Your Blog </h1>
-        <div class="form-group">
-        <form method="POST">
+    <div class="form-group pt-4"></div>   
+    <h1> Update Your Blog </h1>
+        
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.media }}
             {{ form.as_p }}
